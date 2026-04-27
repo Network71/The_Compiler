@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../Principles of programming/Semester 2/Week 4 (Intro to GUI's)"
+		},
+		{
+			"path": "../Principles of programming/Semester 2/Week 2 (object oriented programming)"
+		},
+		{
+			"path": "../Principles of programming/C++"
+		},
+		{
+			"path": "../Principles of programming/Semester 2/MySQL (python access)"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Week 4 (Intro to GUI's)"
+	}
+}
