@@ -195,6 +195,10 @@ camera.orthographic = True
 camera.fov = 20
 
 score = 0
+game_over = False
+
+game_over_text = Text(text="GAME OVER", origin=(0,0), scale=3, color=color.red, enabled=False)
+quit_text =Text(text="Press Q to quit", origin=(0, -2), scale=1.5, color=color.white, enabled=False)
 
 score_text = Text(
     text=f"Score: {score}",
@@ -203,7 +207,22 @@ score_text = Text(
 )
 
 #Enemy Test
-enemy = Entity(model="quad", color=color.red, scale=(1,2,1), position=(0, -9, 0), collider='box')
+enemy_one = Entity(model="quad", color=color.red, scale=(1,1,1), position=(0, -9, 0), collider='box')
+enemy_two = Entity(model="quad", color=color.red, scale=(1,1,1), position=(-10, -5.5, 0), collider='box')
+enemy_three = Entity(model="quad", color=color.red, scale=(1,1,1), position=(0, 6, 0), collider='box')
+enemy_four = Entity(model="quad", color=color.red, scale=(1,1,1), position=(10, 2, 0), collider='box')
+
+enemies = [enemy_one, enemy_two, enemy_three, enemy_four]       
+        
+for enemy in enemies:
+    enemy.start_x = enemy.x
+    enemy.range = 3
+    enemy.direction = 1
+    enemy.speed = 2
+
+enemy_three.direction = -1
+enemy_four.directtion = -1
+
 
 # PLAYER
 player = Entity(
@@ -242,9 +261,23 @@ jump_force = 0.40
 speed = 5
 grounded = False
 
+def enemy_movement(enemy):    
+    enemy.x += enemy.direction * enemy.speed * time.dt
+    if enemy.x > enemy.start_x + enemy.range:
+        enemy.direction = -1
+    if enemy.x < enemy.start_x - enemy.range:
+        enemy.direction = 1
+
 
 def update():
-    global velocity_y, grounded, score
+    global velocity_y, grounded, score, game_over, enemy_direction
+
+    if not game_over:
+        for enemy in enemies:
+            enemy_movement(enemy)
+
+    if game_over:
+        return
 
     # movement
     player.x += (held_keys['d'] - held_keys['a']) * time.dt * speed
@@ -281,10 +314,23 @@ def update():
         player.position = (0, 5, 0)
         velocity_y = 0
 
+    #Enemy collision 
+    for enemy in enemies:
+        if player.intersects(enemy).hit:
+            game_over = True
+            score_text.text = "GAME OVER"
+            player.color = color.gray
+            game_over_text.enabled = True
+            quit_text.enabled = True
 
 def input(key):
     global velocity_y
-    if key == 'space' and grounded:
+
+    if game_over:
+        if key == 'q':
+            application.quit()
+
+    if key == 'w' and grounded:
         velocity_y = jump_force
 
 
