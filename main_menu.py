@@ -19,12 +19,13 @@
 
 from tkinter import *
 
+game_overview_window = NONE
+
+
 window = Tk()
 window.title("Compiler")
 window.geometry('700x700')
 window.config(bg="#e39ea8")
-
-
 
 
 for row in range(5):
@@ -48,8 +49,36 @@ Hilda_label.grid(row=0, column=1)
 button_frame = Frame(window, bg="#e39ea8")
 button_frame.grid(row=1, column=1)
 
-#adding the buttons
+#-------------------game overview function-----------------
+def game_overview():
+    global game_overview_window
+    window.withdraw()
 
+    game_overview_window = Toplevel(window, bg='#39FF14')
+    game_overview_window.geometry("700x700")
+
+    Label(game_overview_window,
+          text="Game Overview",
+          bg='#39FF14',
+          font=('Arial',45,'bold')).grid(row=0, column=0)
+
+    go_back_menu = Button(
+        game_overview_window,
+        text="GO BACK",
+        command=return_from_game_overview
+    )
+    go_back_menu.grid(row=3, column=2)
+
+    game_overview_window.protocol("WM_DELETE_WINDOW",return_from_game_overview)
+
+def return_from_game_overview():
+    game_overview_window.destroy()
+    window.update()
+    window.deiconify()
+
+#----------def star_play_button():-----------
+#this where the function will be called for the game
+#--------------------------------------------
 play_button = Button(button_frame, 
                     text= "Play",
                     font=('Arial', 20, 'bold'),
@@ -57,6 +86,15 @@ play_button = Button(button_frame,
                     fg="white",
 )
 play_button.grid(row=1, column=1, pady=10)
+
+game_overview_button = Button(button_frame, 
+                    text= "Game Overview",
+                    font=('Arial', 20, 'bold'),
+                    bg="black",
+                    fg="white",
+                    command= game_overview             
+)
+game_overview_button.grid(row=3, column=1, pady=10)
 
 difficulty_button = Button(button_frame, 
                     text= "Difficulty",
@@ -66,14 +104,9 @@ difficulty_button = Button(button_frame,
 )
 difficulty_button.grid(row=2, column=1, pady=10)
 
-game_overview_button = Button(button_frame, 
-                    text= "Game Overview",
-                    font=('Arial', 20, 'bold'),
-                    bg="black",
-                    fg="white"                  
-)
-game_overview_button.grid(row=3, column=1, pady=10)
 
+
+#-------------------quit window function-----------------
 def quit_window():
     window.withdraw()
 
