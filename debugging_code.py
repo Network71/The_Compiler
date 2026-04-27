@@ -6,11 +6,9 @@ def check_input(input):
     print("check input")
     correct_answer = 'print("Hello, world!")'
 
-
     if input == correct_answer:
         info_label.config(text='Correct, proceed to the next level!')
         #move on here           
-
     else:
         info_label.config(text='Incorrect, try again!')
 
