@@ -24,6 +24,9 @@ window.title("Compiler")
 window.geometry('700x700')
 window.config(bg="#e39ea8")
 
+
+
+
 for row in range(5):
     window.rowconfigure(row, weight=1)
 
@@ -71,13 +74,18 @@ game_overview_button = Button(button_frame,
 )
 game_overview_button.grid(row=3, column=1, pady=10)
 
+def quit_window():
+    window.withdraw()
+
 quit_button = Button(button_frame, 
                     text= "Quit",
                     font=('Arial', 20, 'bold'),
                     bg="black",
-                    fg="white"             
+                    fg="white",
+                    command= quit_window             
 )
 quit_button.grid(row=4, column=1, pady=10)
+
 
 window.mainloop()
 
