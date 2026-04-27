@@ -45,7 +45,7 @@ window.color        = COL_BG
 camera.orthographic = True
 camera.fov          = 14          # world units visible vertically
 camera.position     = (0, 4, -50)
- 
+
 # ── Global state ──────────────────────────────────────────────────────────────
 GRAVITY        = -28
 JUMP_FORCE     = 11
