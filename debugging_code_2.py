@@ -5,11 +5,10 @@ import random
 def check_input(input):
     print(input)
     print("check input")
-    correct_answer1 = 'print("Hello, world!")'
-    correct_answer2 = 'if value == 5:'
-    correct_answer3 = 'x = 5 + 10'
+    correct_answer1 = 'def calculate_total(items, tax=0.05):'
+    correct_answer2 = 'print("Hello")'
+    correct_answer3 = 'value = 12'
 
-    #check input from user is correct
     if input == correct_answer1 or input == correct_answer2 or input == correct_answer3:
         info_label.config(text='Correct!')
         #move on here           
@@ -21,25 +20,25 @@ def get_input():
     print(input_code) #testing
     check_input(input_code)
 
+def get_random():
+    randnum = random.randrange(1,4)
+    return randnum
+
 def on_enter(e):
     e.widget.config(bg="#FFD166", fg="#3A0066")
 
 def on_leave(e):
     e.widget.config(bg="#FF8C00", fg="#FFF5CC")
 
-def get_random():
-    randnum = random.randrange(1,4)
-    return randnum
-
 def show_image():
     num = get_random()
     file_path = ''
     if num == 1:
-        file_path = 'broken_code_ez1.png'
+        file_path = 'broken_code_hard1.png'
     elif num == 2:
-        file_path = 'broken_code_ez2.png'
+        file_path = 'broken_code_hard2.png'
     elif num == 3:
-        file_path = 'broken_code_ez3.png'
+        file_path = 'broken_code_hard3.png'
 
     #show the screenshot with broken code
     wrong_code_img = PhotoImage(file=file_path)
@@ -51,25 +50,26 @@ def debugging_window():
     global debug_window 
     debug_window = Tk()
     debug_window.title("Debugging Code")
-    debug_window.geometry('500x375')
+    debug_window.geometry('600x375')
     debug_window.config(bg="#3A0066")
 
     head_label = Label(debug_window, text='Find the mistake!', bg="#3A0066", fg="#FFF5CC", font=('Courier', 30))
     head_label.pack(side='top', pady=10)
 
+    #show the screenshot with broken code
+    show_image()
+
     #secondary label
     second_label = Label(debug_window, text='Enter the correct code below!', bg="#3A0066", fg="#FFF5CC", font=('Courier', 15))
     second_label.pack(side='top', pady=10)
 
-    #screenshot here
-    show_image()
-
     #input field for correct code
     global code_entry
-    code_entry = Entry(debug_window, width=25, font=('Courier', 20))
+    code_entry = Entry(debug_window, width=35, font=('Courier', 20))
     code_entry.pack(side='top', pady=20)
 
     #check button
+    global check_button
     check_button = Button(debug_window, text='Check', font=('Courier', 10), 
                           bg="#FF8C00",
                           fg="#FFF5CC",
@@ -77,7 +77,6 @@ def debugging_window():
                           activeforeground="#00FFFF",
                           command=get_input, padx=20, pady=10)
     check_button.pack(side='top')
-
 
     #feedback label
     global info_label

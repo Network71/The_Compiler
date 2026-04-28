@@ -1,3 +1,3 @@
 The Compiler
-Dedicated to XXXTentacion
-RIP XXXTentacion
+
+A 2D, arcade style computer science learning game
