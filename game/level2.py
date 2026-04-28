@@ -178,7 +178,7 @@ def update():
     if score >= 8:
         game_over = True
         score_text.text = "YOU WIN"
-        win_text.text = f"YOU WIN   Score: {score}"
+        win_text.text = f"YOU WIN   Score { score}"
         win_text.enabled = True
         quit_text.enabled = True
         player.color=color.green

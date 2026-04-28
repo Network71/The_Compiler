@@ -18,14 +18,29 @@
 # main()
 
 from tkinter import *
+import sys
+import subprocess
 
 game_overview_window = None
 credits_window = None
+
+
 
 window = Tk()
 window.title("Compiler")
 window.geometry('700x700')
 window.config(bg="#3A0066")
+
+
+
+
+def load_level():
+    print("opening first level")
+    subprocess.Popen([sys.executable, r"C:\Users\aidan\OneDrive\Documents\UNI WORK\Bartek Git\The_Compiler\game\Game.py"])
+    window.destroy()
+    print("passed Popen")
+
+    
 
 
 for row in range(5):
@@ -119,7 +134,8 @@ play_button = Button(button_frame,
                     bg="#FF8C00",            
                     fg="#FFF5CC",            
                     activebackground="#4B0082",
-                    activeforeground="#00FFFF" 
+                    activeforeground="#00FFFF",
+                    command=lambda: load_level()
                     
 )
 play_button.grid(row=1, column=1, pady=10)
