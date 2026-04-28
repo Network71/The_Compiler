@@ -1,18 +1,8 @@
 from ursina import *
-import subprocess
-import sys
 
 #Add coin sprite as texture to collectables
 
 app = Ursina()
-
-def load_level():
-    print("opening second level")
-    subprocess.Popen([sys.executable, r"C:\Users\aidan\OneDrive\Documents\UNI WORK\Bartek Git\The_Compiler\game\level2.py"])
-    print("passed Popen")
-    application.quit()
-    print("passed quit")
-
 
 camera.orthographic = True
 camera.fov = 20
@@ -47,13 +37,15 @@ win_text = Text(
     enabled = False,
     font="ARCADECLASSIC.TTF"
 )
-#Enemy Test
-enemy_one = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(0, -9, 0), collider='box')
-enemy_two = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(-10, -5.5, 0), collider='box')
-enemy_three = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(0, 6, 0), collider='box')
-enemy_four = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(10, 2, 0), collider='box')
 
-enemies = [enemy_one, enemy_two, enemy_three, enemy_four]       
+#Enemies
+#position=(-12, 1, 0)
+enemy_one = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(3, -5.3, 0), collider='box')
+enemy_two = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(0, 0.3, 0), collider='box')
+enemy_three = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(0, 6.3, 0), collider='box')
+enemy_four = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(-12, 2.2, 0), collider='box')
+
+enemies = [enemy_three, enemy_one, enemy_two, enemy_four]
         
 for enemy in enemies:
     enemy.start_x = enemy.x
@@ -62,26 +54,14 @@ for enemy in enemies:
     enemy.speed = 2
 
 enemy_three.direction = -1
-enemy_four.direction = -1
+# enemy_four.direction = -1
 
 
 for enemy in enemies:
     enemy.collider = BoxCollider(enemy, size=(0.5, 0.8, 1))
 
-# PLAYER
-# player = Entity(
-#     model='quad',
-#     texture="ByteRider2.png",
-#     scale=(2.7, 2.7, 2.7),
-#     position=(0, 2, 0),
-#     collider='box'
-# )
-
-# player.model_origin = (1, 1, 0)
-# player.collider = BoxCollider(player, size=(0.4, 1, 1))
-
 player = Entity(
-    position=(0, 2, 0),
+    position=(-15, -9.2, 0),
     collider='box'
 )
 
@@ -102,24 +82,26 @@ player_visual = Entity(
 # player.collider.scale = (0.8,0.9, 1)
 
 # PLATFORMS (FIXED SCALE Z = 1)
-ground = Entity(model='cube', color=color.gray, scale=(100, 1, 1), position=(0, -10, 0), collider='box')
-blockLeft = Entity(model='quad', color=color.black, scale=(10, 1, 1), position=(-10, -6.5, 0), collider='box')
-blockRight = Entity(model='cube', color=color.black, scale=(10, 1, 1), position=(10, -6.5, 0), collider='box')
-middleBox = Entity(model='cube', color=color.black, scale=(10, 1, 1), position=(0, -3, 0), collider='box')
-topLeftBox = Entity(model='cube', color=color.black, scale=(10, 1, 1), position=(-10, 1, 0), collider='box')
-topRightBox = Entity(model='cube', color=color.black, scale=(10, 1, 1), position=(10, 1, 0), collider='box')
+startingblockLeft = Entity(model='quad', color=color.black, scale=(7, 1, 1), position=(-14, -9.3, 0), collider='box')
+longMiddleBlock = Entity(model='cube', color=color.black, scale=(10, 1, 1), position=(3, -6.5, 0), collider='box')
+bottommiddleBox = Entity(model='cube', color=color.black, scale=(3, 1, 1), position=(-4.7, -8.4, 0), collider='box')
+topleftcorner = Entity(model='quad', color=color.black, scale=(7, 1, 1), position=(-12, 1, 0), collider='box')
+centermiddlebox = Entity(model='cube', color=color.black, scale=(10, 1, 1), position=(0, -1, 0), collider='box')
+middlerightbox = Entity(model='cube', color=color.black, scale=(4, 1, 1), position=(11, -3, 0), collider='box')
 topMiddleBox = Entity(model='cube', color=color.black, scale=(10, 1, 1), position=(0, 5, 0), collider='box')
 
-platforms = [ground, blockLeft, blockRight, middleBox, topLeftBox, topRightBox, topMiddleBox]
+platforms = [startingblockLeft, longMiddleBlock, bottommiddleBox, centermiddlebox, middlerightbox, topMiddleBox, topleftcorner] 
 
 # COLLECTIBLES (FIXED SCALE Z)
 collectibles = [
-    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 1), position=(2, 1, 0), collider='box'),
-    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 0.5), position=(10, -5, 0), collider='box'),
-    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 0.5), position=(-10, -5.5, 0), collider='box'),
-    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 0.5), position=(-10, 5.5, 0), collider='box'),
-    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 0.5), position=(0, 7, 0), collider='box'),
-    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 0.5), position=(10, 5.5, 0), collider='box'),
+    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 1), position=(3, -5, 0), collider='box'),
+    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 1), position=(-12, -7, 0), collider='box'),
+    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 1), position=(11, -1, 0), collider='box'),
+    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 1), position=(-3.5, 1, 0), collider='box'),
+    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 1), position=(0.5, 1, 0), collider='box'),
+    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 1), position=(4.5, 1, 0), collider='box'),
+    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 1), position=(-12, 2.5, 0), collider='box'),
+    Entity(model='cube', texture="Collectable.png", scale=(1.5, 1.5, 1), position=(0, 6.5, 0), collider='box')
 ]
 
 # PHYSICS
@@ -193,7 +175,7 @@ def update():
             score_text.text = f"Score: {score}"
 
     #win condition 
-    if score >= 6:
+    if score >= 8:
         game_over = True
         score_text.text = "YOU WIN"
         win_text.text = f"YOU WIN   Score: {score}"
@@ -201,7 +183,7 @@ def update():
         quit_text.enabled = True
         player.color=color.green
 
-        invoke(load_level, delay=0.2)
+
 
     # safety reset (prevents “lost player”)
     if player.y < -50:
