@@ -19,7 +19,7 @@
 
 from tkinter import *
 
-game_overview_window = NONE
+game_overview_window = None
 
 
 window = Tk()
@@ -54,20 +54,32 @@ def game_overview():
     global game_overview_window
     window.withdraw()
 
-    game_overview_window = Toplevel(window, bg='#39FF14')
+    game_overview_window = Toplevel(window, bg="#e39ea8")
     game_overview_window.geometry("700x700")
+
+    for col in range(3):
+        game_overview_window.columnconfigure(col, weight=1)
+        game_overview_window.rowconfigure(1, weight=1)
+
+
 
     Label(game_overview_window,
           text="Game Overview",
-          bg='#39FF14',
-          font=('Arial',45,'bold')).grid(row=0, column=0)
+          bg="#e39ea8",
+          font=('Arial',45,'bold')).grid(row=0, column=1)
 
     go_back_menu = Button(
         game_overview_window,
         text="GO BACK",
         command=return_from_game_overview
     )
-    go_back_menu.grid(row=3, column=2)
+    go_back_menu.grid(row=2, column=1,sticky='s', pady=20)
+
+    Label(game_overview_window,
+          text="""2D computer science game, where the user collects 
+          broken code. Then debugs it to progress.""",
+          bg="#e39ea8",
+          font=('Arial',20,'bold')).grid(row=1, column=1)
 
     game_overview_window.protocol("WM_DELETE_WINDOW",return_from_game_overview)
 
