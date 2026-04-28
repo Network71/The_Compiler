@@ -32,8 +32,6 @@ window.geometry('700x700')
 window.config(bg="#3A0066")
 
 
-
-
 def load_level():
     print("opening first level")
     subprocess.Popen([sys.executable, r"C:\Users\aidan\OneDrive\Documents\UNI WORK\Bartek Git\The_Compiler\game\Game.py"])
@@ -41,8 +39,6 @@ def load_level():
     print("passed Popen")
 
     
-
-
 for row in range(5):
     window.rowconfigure(row, weight=1)
 
