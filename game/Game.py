@@ -8,7 +8,7 @@ app = Ursina()
 
 def load_level():
     print("opening second level")
-    subprocess.Popen([sys.executable, r"C:\Users\aidan\OneDrive\Documents\UNI WORK\Bartek Git\The_Compiler\game\level2.py"])
+    subprocess.Popen([sys.executable, r"C:\Users\aidan\OneDrive\Documents\UNI WORK\Bartek Git\The_Compiler\debugging_code.py"])
     print("passed Popen")
     application.quit()
     print("passed quit")
@@ -48,10 +48,10 @@ win_text = Text(
     font="ARCADECLASSIC.TTF"
 )
 #Enemy Test
-enemy_one = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(0, -9, 0), collider='box')
-enemy_two = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(-10, -5.5, 0), collider='box')
-enemy_three = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(0, 6, 0), collider='box')
-enemy_four = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(10, 2, 0), collider='box')
+enemy_one = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(0, -8.7, 0), collider='box')
+enemy_two = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(-10, -5.3, 0), collider='box')
+enemy_three = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(0, 6.3, 0), collider='box')
+enemy_four = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(10, 2.3, 0), collider='box')
 
 enemies = [enemy_one, enemy_two, enemy_three, enemy_four]       
         

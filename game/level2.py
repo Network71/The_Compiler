@@ -1,5 +1,6 @@
 from ursina import *
-
+import sys
+import subprocess
 #Add coin sprite as texture to collectables
 
 app = Ursina()
@@ -172,7 +173,7 @@ def update():
         if c.enabled and player.intersects(c).hit:
             c.disable()
             score += 1
-            score_text.text = f"Score: {score}"
+            score_text.text = f"Score { score}"
 
     #win condition 
     if score >= 8:
@@ -182,6 +183,11 @@ def update():
         win_text.enabled = True
         quit_text.enabled = True
         player.color=color.green
+
+        print("opening second level")
+        subprocess.Popen([sys.executable, r"C:\Users\aidan\OneDrive\Documents\UNI WORK\Bartek Git\The_Compiler\debugging_code_2.py"])
+        print("passed Popen")
+        application.quit()
 
 
 

@@ -1,5 +1,7 @@
 from tkinter import *
 import random
+import sys
+import subprocess
 #this is the debugging screen
 
 def check_input(input):
@@ -11,7 +13,7 @@ def check_input(input):
 
     if input == correct_answer1 or input == correct_answer2 or input == correct_answer3:
         info_label.config(text='Correct!')
-        #move on here           
+        #move on here  
     else:
         info_label.config(text='Incorrect, try again!')
 

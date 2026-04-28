@@ -1,5 +1,7 @@
 from tkinter import *
 import random
+import sys
+import subprocess
 #this is the debugging screen
 
 def check_input(input):
@@ -12,7 +14,11 @@ def check_input(input):
     #check input from user is correct
     if input == correct_answer1 or input == correct_answer2 or input == correct_answer3:
         info_label.config(text='Correct!')
-        #move on here           
+        #move on here    
+        print("opening second level")
+        subprocess.Popen([sys.executable, r"C:\Users\aidan\OneDrive\Documents\UNI WORK\Bartek Git\The_Compiler\game\level2.py"])
+        print("passed Popen")
+        debug_window.destroy()
     else:
         info_label.config(text='Incorrect, try again!')
 
