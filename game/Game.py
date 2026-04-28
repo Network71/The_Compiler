@@ -1,193 +1,6 @@
-# from ursina import *
-
-# app = Ursina()
-
-# camera.orthographic = True
-# camera.fov = 20
-
-# score = 0
-
-# score_text = Text(
-#     text=f"Score: {score}",
-#     position =(-0.7, 0.45),
-#     scale = 2
-# )
-
-# player = Entity(
-#     model='cube',
-#     color=color.orange,
-#     scale=(1, 1, 1),
-#     position=(0, 1, 0),
-#     collider='box'
-# )
-# # ground = Entity(
-# #     model='cube',
-# #     color=color.green,
-# #     scale=(100, 1, 0),
-# #     position=(0, -10, 0),
-# #     collider='box'
-# # )
-# # #another block 
-# # blockLeft = Entity(
-# #     model='cube',
-# #     color=color.black,
-# #     scale=(10, 1, 0),
-# #     position=(-10, -6.5, 0),
-# #     collider='box'    
-# # )
-# # blockRight = Entity(
-# #     model='cube',
-# #     color=color.black,
-# #     scale=(10, 1, 0),
-# #     position=(10, -6.5, 0),
-# #     collider='box'
-# # )
-# # middleBox = Entity(
-# #     model='cube',
-# #     color=color.black,
-# #     scale=(10, 1, 0),
-# #     position=(0, -3, 0),
-# #     collider='box'
-# # )
-# # TopRightBox = Entity(
-# #     model='cube',
-# #     color=color.black,
-# #     scale=(10, 1, 0),
-# #     position=(-10, 1, 0),
-# #     collider='box'
-# # )
-
-# # TopLeftBox = Entity(
-# #     model='cube',
-# #     color=color.black,
-# #     scale=(10, 1, 0),
-# #     position=(-10, 1, 0),
-# #     collider='box'
-# # )
-
-# # TopRightBox = Entity(
-# #     model='cube',
-# #     color=color.black,
-# #     scale=(10, 1, 0),
-# #     position=(10, 1, 0),
-# #     collider='box'
-# # )
-
-# # TopMiddleBox = Entity(
-# #     model='cube',
-# #     color=color.black,
-# #     scale=(10, 1, 0),
-# #     position=(0, 5, 0),
-# #     collider='box'
-# # )
-
-
-# # collectibles = [Entity(
-# #     model='cube',
-# #     color=color.yellow,
-# #     scale=(0.5, 0.5, 0),
-# #     position=(2, 1, 0),
-# #     collider='box'
-# # ), 
-
-# ground = Entity(model='cube', color=color.green, scale=(100, 1, 0), position=(0, -10, 0), collider='box')
-# blockLeft = Entity(model='cube', color=color.black, scale=(10, 1, 0), position=(-10, -6.5, 0), collider='box')
-# blockRight = Entity(model='cube', color=color.black, scale=(10, 1, 0), position=(10, -6.5, 0), collider='box')
-# middleBox = Entity(model='cube', color=color.black, scale=(10, 1, 0), position=(0, -3, 0), collider='box')
-# topLeftBox = Entity(model='cube', color=color.black, scale=(10, 1, 0), position=(-10, 1, 0), collider='box')
-# topRightBox = Entity(model='cube', color=color.black, scale=(10, 1, 0), position=(10, 1, 0), collider='box')
-# topMiddleBox = Entity(model='cube', color=color.black, scale=(10, 1, 0), position=(0, 5, 0), collider='box')
-
-# platforms = [ground, blockLeft, blockRight, middleBox, topLeftBox, topRightBox, topMiddleBox]
-
-
-# collectibles = [
-#     Entity(model='cube', color=color.yellow, scale=(0.5, 0.5, 1), position=(2, 1, 0), collider='box'),
-#     Entity(model='cube', color=color.yellow, scale=(0.5, 0.5, 1), position=(10, -5, 0), collider='box'),
-#     Entity(model='cube', color=color.yellow, scale=(0.5, 0.5, 1), position=(-10, -5.5, 0), collider='box'),
-#     Entity(model='cube', color=color.yellow, scale=(0.5, 0.5, 1), position=(-10, 5.5, 0), collider='box'),
-#     Entity(model='cube', color=color.yellow, scale=(0.5, 0.5, 1), position=(0, 7, 0), collider='box'),
-#     Entity(model='cube', color=color.yellow, scale=(0.5, 0.5, 1), position=(10, 5.5, 0), collider='box'),
-# ]
-
-# # Entity( # Middle
-# #     model='cube',
-# #     color=color.yellow, scale=(0.5, 0.5, 0),
-# #     position=(10,-5,0),
-# #     collider='box'
-# # ),
-# # Entity( # bottom left
-# #     model='cube',
-# #     color=color.yellow, scale=(0.5, 0.5, 0),
-# #     position=(-10,-5.5,0),
-# #     collider='box'
-# # ),
-
-# # Entity( # Bottom right 
-# #     model='cube',
-# #     color=color.yellow, scale=(0.5, 0.5, 0),
-# #     position=(-10,5.5,0),
-# #     collider='box'
-# # ),
-# # Entity( # Middle Top
-# #     model='cube',
-# #     color=color.yellow, scale=(0.5, 0.5, 0),
-# #     position=(0,7,0),
-# #     collider='box'
-# # ),
-# # Entity(
-# #     model='cube',
-# #     color=color.yellow, scale=(0.5, 0.5, 0),
-# #     position=(10,5.5,0),
-# #     collider='box'
-# # )
-
-
-# velocity_y = 0
-# gravity = 30
-# jump_force = 12
-# speed = 5
-# grounded = False
-
-# def update():
-#     global velocity_y, grounded, score
-
-#     player.x += held_keys['d'] * time.dt * speed
-#     player.x -= held_keys['a'] * time.dt * speed
-
-#     velocity_y -= gravity * time.dt
-#     player.y += velocity_y
-
-#     grounded = False
-#     for plat in platforms:
-#         hit_info = player.intersects(plat)
-#         if hit_info.hit:
-#             if velocity_y <= 0:
-#                 grounded = True
-#                 player.y = plat.world_y + plat.scale_y / 2 + player.scale_y / 2
-#                 velocity_y = 0
-#                 grounded = True
-#             else:
-#                 player.y = plat.y - plat.scale_y / 2 - player.scale_y / 2
-
-#     #collectible collision
-#     for c in collectibles:
-#         if c.enabled and player.intersects(c).hit:
-#             c.disable()
-#             score += 1
-#             score_text.text = f"Score: {score}"
-
-    
-# print(player.position)
-# def input(key):
-#     global velocity_y
-#     if key == 'space' and grounded:
-#         velocity_y = jump_force
-
-# app.run()
-
-
 from ursina import *
+
+#Add coin sprite as texture to collectables
 
 app = Ursina()
 
@@ -206,11 +19,18 @@ score_text = Text(
     scale=2
 )
 
+win_text = Text(
+    text=f"", #runs at the beginning of the program
+    origin=(0,0), 
+    scale=3,
+    color=color.green,
+    enabled = False
+)
 #Enemy Test
-enemy_one = Entity(model="quad", color=color.red, scale=(1,1,1), position=(0, -9, 0), collider='box')
-enemy_two = Entity(model="quad", color=color.red, scale=(1,1,1), position=(-10, -5.5, 0), collider='box')
-enemy_three = Entity(model="quad", color=color.red, scale=(1,1,1), position=(0, 6, 0), collider='box')
-enemy_four = Entity(model="quad", color=color.red, scale=(1,1,1), position=(10, 2, 0), collider='box')
+enemy_one = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(0, -9, 0), collider='box')
+enemy_two = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(-10, -5.5, 0), collider='box')
+enemy_three = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(0, 6, 0), collider='box')
+enemy_four = Entity(model="quad", texture="Enemy.png", scale=(2.5,2.5,2.5), position=(10, 2, 0), collider='box')
 
 enemies = [enemy_one, enemy_two, enemy_three, enemy_four]       
         
@@ -221,17 +41,44 @@ for enemy in enemies:
     enemy.speed = 2
 
 enemy_three.direction = -1
-enemy_four.directtion = -1
+enemy_four.direction = -1
 
+
+for enemy in enemies:
+    enemy.collider = BoxCollider(enemy, size=(0.5, 0.8, 1))
 
 # PLAYER
+# player = Entity(
+#     model='quad',
+#     texture="ByteRider2.png",
+#     scale=(2.7, 2.7, 2.7),
+#     position=(0, 2, 0),
+#     collider='box'
+# )
+
+# player.model_origin = (1, 1, 0)
+# player.collider = BoxCollider(player, size=(0.4, 1, 1))
+
 player = Entity(
-    model='cube',
-    color=color.orange,
-    scale=(1, 1, 1),
     position=(0, 2, 0),
     collider='box'
 )
+
+player.collider = BoxCollider(player, size=(1, 1.6, 1))
+
+
+# VISUAL (this is what you SEE)
+player_visual = Entity(
+    parent=player,
+    model='quad',
+    texture="ByteRider2.png",
+    scale=(2.7, 2.7, 2.7),
+    y=0.1   # <-- THIS is the key (adjust this number)
+)
+
+
+#adjusted hit box
+# player.collider.scale = (0.8,0.9, 1)
 
 # PLATFORMS (FIXED SCALE Z = 1)
 ground = Entity(model='cube', color=color.green, scale=(100, 1, 1), position=(0, -10, 0), collider='box')
@@ -257,9 +104,12 @@ collectibles = [
 # PHYSICS
 velocity_y = 0
 gravity = 1
-jump_force = 0.40
+jump_force = 0.38
 speed = 5
 grounded = False
+
+enemy.collider.visible = True
+player.collider.visible = True
 
 def enemy_movement(enemy):    
     enemy.x += enemy.direction * enemy.speed * time.dt
@@ -296,7 +146,7 @@ def update():
             # only land if falling
             if velocity_y <= 0:
                 grounded = True
-                player.y = plat.y + plat.scale_y / 2 + player.scale_y / 2
+                player.y = plat.y + plat.scale_y / 2 + player.collider.size[1] / 2
                 velocity_y = 0
                 break  # IMPORTANT: stop after first valid platform
 
@@ -307,6 +157,16 @@ def update():
             c.disable()
             score += 1
             score_text.text = f"Score: {score}"
+
+    #win condition 
+    if score >= 6:
+        game_over = True
+        score_text.text = "YOU WIN"
+        win_text.text = f"YOU WIN   Score: {score}"
+        win_text.enabled = True
+        quit_text.enabled = True
+        player.color=color.green
+
 
 
     # safety reset (prevents “lost player”)
