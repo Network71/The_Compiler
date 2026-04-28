@@ -1,56 +1,92 @@
 from tkinter import *
+import random
 #this is the debugging screen
 
 def check_input(input):
     print(input)
     print("check input")
-    correct_answer = 'def calculate_total(items, tax=0.05):'
+    correct_answer1 = 'def calculate_total(items, tax=0.05):'
+    correct_answer2 = 'print("Hello")'
+    correct_answer3 = 'value = 12'
 
-    if input == correct_answer:
-        info_label.config(text='Correct, proceed to the next level!')
+    if input == correct_answer1 or input == correct_answer2 or input == correct_answer3:
+        info_label.config(text='Correct!')
         #move on here           
     else:
         info_label.config(text='Incorrect, try again!')
 
 def get_input():
     input_code = code_entry.get()
-    print(input_code)
+    print(input_code) #testing
     check_input(input_code)
+
+def get_random():
+    randnum = random.randrange(1,4)
+    return randnum
+
+def on_enter(e):
+    e.widget.config(bg="#FFD166", fg="#3A0066")
+
+def on_leave(e):
+    e.widget.config(bg="#FF8C00", fg="#FFF5CC")
+
+def show_image():
+    num = get_random()
+    file_path = ''
+    if num == 1:
+        file_path = 'broken_code_hard1.png'
+    elif num == 2:
+        file_path = 'broken_code_hard2.png'
+    elif num == 3:
+        file_path = 'broken_code_hard3.png'
+
+    #show the screenshot with broken code
+    wrong_code_img = PhotoImage(file=file_path)
+    label = Label(debug_window, image=wrong_code_img)
+    label.image = wrong_code_img
+    label.pack()
 
 def debugging_window():
     global debug_window 
     debug_window = Tk()
     debug_window.title("Debugging Code")
-    debug_window.geometry('500x300')
+    debug_window.geometry('600x375')
+    debug_window.config(bg="#3A0066")
 
-    head_label = Label(debug_window, text='Find the mistake!', font=('Calibri', 30))
-    head_label.pack(side='top')
+    head_label = Label(debug_window, text='Find the mistake!', bg="#3A0066", fg="#FFF5CC", font=('Courier', 30))
+    head_label.pack(side='top', pady=10)
 
     #show the screenshot with broken code
-    wrong_code_img = PhotoImage(file='broken_code2.png')
-    label = Label(debug_window, image=wrong_code_img)
-    label.image = wrong_code_img
-    label.pack()
+    show_image()
 
     #secondary label
-    second_label = Label(debug_window, text='Enter the correct code below!', font=('Calibri', 15))
-    second_label.pack(side='top')
+    second_label = Label(debug_window, text='Enter the correct code below!', bg="#3A0066", fg="#FFF5CC", font=('Courier', 15))
+    second_label.pack(side='top', pady=10)
 
     #input field for correct code
     global code_entry
-    code_entry = Entry(debug_window, width=35)
-    code_entry.pack(side='top')
+    code_entry = Entry(debug_window, width=35, font=('Courier', 20))
+    code_entry.pack(side='top', pady=20)
 
     #check button
-    check_button = Button(debug_window, text='Check', font=('Calibri', 10), command=get_input, padx=20, pady=10)
+    global check_button
+    check_button = Button(debug_window, text='Check', font=('Courier', 10), 
+                          bg="#FF8C00",
+                          fg="#FFF5CC",
+                          activebackground="#4B0082",
+                          activeforeground="#00FFFF",
+                          command=get_input, padx=20, pady=10)
     check_button.pack(side='top')
 
     #feedback label
     global info_label
-    info_label = Label(debug_window, font=('Calibri', 20))
+    info_label = Label(debug_window, bg="#3A0066", fg="#FFF5CC", font=('Courier', 20))
     info_label.pack(side='top')
+
+    for btn in [check_button]:
+        btn.bind("<Enter>", on_enter)
+        btn.bind("<Leave>", on_leave)
 
     debug_window.mainloop()
 
 debugging_window()
-
