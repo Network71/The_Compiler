@@ -24,8 +24,6 @@ import subprocess
 game_overview_window = None
 credits_window = None
 
-
-
 window = Tk()
 window.title("Compiler")
 window.geometry('700x700')
@@ -48,10 +46,10 @@ for col in range(3):
 # Heading
 Hilda_label = Label(
     window,
-    text="Compiler",
-    font=('Courier', 40, 'bold'),
+    text="Byte Rider",
+    font=('Arcade Classic', 40),
     bg="#3A0066",
-    fg="#FFF5CC"
+    fg="#FFF5CC",
 )
 
 Hilda_label.grid(row=0, column=1)
