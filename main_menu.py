@@ -20,7 +20,7 @@
 from tkinter import *
 
 game_overview_window = None
-
+credits_window = None
 
 window = Tk()
 window.title("Compiler")
@@ -44,6 +44,14 @@ Hilda_label = Label(
 )
 
 Hilda_label.grid(row=0, column=1)
+
+# ---------------- TITLE ANIMATION ----------------
+def pulse(size=40):
+    new_size = size + 2 if size < 44 else 40
+    Hilda_label.config(font=('Courier', new_size, 'bold'))
+    window.after(500, lambda: pulse(new_size))
+
+pulse()
 
 # Frame for buttons
 
@@ -204,7 +212,6 @@ def return_from_credits():
     window.deiconify()
 
 
-
 #-------------------quit window function-----------------
 def quit_window():
     window.withdraw()
@@ -219,6 +226,18 @@ quit_button = Button(button_frame,
                     command= quit_window             
 )
 quit_button.grid(row=4, column=1, pady=10)
+
+#---------button animation---------
+
+def on_enter(e):
+    e.widget.config(bg="#FFD166", fg="#3A0066")
+
+def on_leave(e):
+    e.widget.config(bg="#FF8C00", fg="#FFF5CC")
+
+for btn in [play_button, game_overview_button, credits_button, quit_button]:
+    btn.bind("<Enter>", on_enter)
+    btn.bind("<Leave>", on_leave)
 
 
 window.mainloop()
